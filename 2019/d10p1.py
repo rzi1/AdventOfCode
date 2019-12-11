@@ -22,12 +22,20 @@ def destroy(asteroids, best):
     angle_distance = sorted(angle_distance, key=operator.itemgetter(0,1))
     angles.sort()
     count = 0
-    for j in range(len(angles)):
-        for i in range(len(angle_distance)):
-            if angles[j] == angle_distance[i][0]:
-                print(count, angle_distance[i][2])
-                count += 1
-                angle_distance.pop(i)
+    asteroid_position = 0
+    angle_position = 0
+    angles_length = len(angles)
+    while angle_distance:
+        if angles[angle_position] == angle_distance[asteroid_position][0]:
+            print(count + 1, angle_distance[asteroid_position][2])
+            count += 1
+            angle_distance.pop(asteroid_position)
+            angle_position += 1
+            if angle_position >= angles_length:
+                angle_position = 0
+        asteroid_position += 1
+        if asteroid_position >= len(angle_distance):
+            asteroid_position = 0
 
 
     print(angle_distance)
@@ -54,9 +62,9 @@ def get_most(asteroids):
     return best, most
 
 def main():
-    file = 'testinpitd10.txt'
-    file2 = 'd10Input.txt'
-    lines = [str(x).strip() for x in open(file).readlines()]
+    file = 'Inputs/testinputd10.txt'
+    file2 = 'Inputs/d10Input.txt'
+    lines = [str(x).strip() for x in open(file2).readlines()]
     height = len(lines)
     width = len(lines[0])
     asteroids = []
@@ -65,7 +73,6 @@ def main():
             if lines[i][j] == '#':
                 asteroids.append((j, i))
     best, max = get_most(asteroids)
-    asteroids.sort()
     print(best)
     print(max)
     destroy(asteroids, best)
