@@ -1,6 +1,6 @@
 class IntcodeComputer:
     def __init__(self, array, name='IntCode'):
-        array.extend([0] * 100000000)
+        array.extend([0] * 65000) #comment for d7 memory error
         self.array = array.copy()
         self.trace = False
         self.name = name
@@ -30,7 +30,7 @@ class IntcodeComputer:
             if self.trace:
                 print(f"{self.name}: 'send' hit StopIteration")
 
-    def receieve(self):
+    def receive(self):
         try:
             for output in self.generator:
                 if output is not None:
