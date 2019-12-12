@@ -1,4 +1,4 @@
-class intcodeComputer:
+class IntcodeComputer:
     def __init__(self, array, name='IntCode'):
         array.extend([0] * 100000000)
         self.array = array.copy()
@@ -163,8 +163,3 @@ class intcodeComputer:
                 self._output = None
 
 
-code = [int(x) for x in open('d9Input.txt').read().split(',')]
-ic = intcodeComputer(code)
-ic.send(1)
-
-print(ic.receieve())

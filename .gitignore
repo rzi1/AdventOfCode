@@ -3,3 +3,6 @@
 # ignore env
 venv/
 
+2019/__init__.py
+__init__.py
+__pycache__/
